@@ -5,7 +5,7 @@ const restartBtn = document.querySelector('.restart-btn');
 
 let currentPlayer = 'X';
 let gameState = ['', '', '', '', '', '', '', '', ''];
-let isGameActive = true;
+let GameActive = true;
 
 const winningCombinations = [
   [0, 1, 2],
@@ -22,7 +22,7 @@ const handleCellClick = function(event) {
   const clickedCell = event.target;
   const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
 
-  if (gameState[clickedCellIndex] !== '' || !isGameActive) {
+  if (gameState[clickedCellIndex] !== '' || !GameActive) {
     return;
   }
 
@@ -33,7 +33,7 @@ const handleCellClick = function(event) {
 const handleRestartGame = function() {
   currentPlayer = 'X';
   gameState = ['', '', '', '', '', '', '', '', ''];
-  isGameActive = true;
+  GameActive = true;
   message.innerText = '';
 
   cells.forEach(cell => {
@@ -72,14 +72,14 @@ const handleResultValidation = function() {
 
   if (roundWon) {
     message.innerText = `${currentPlayer} has won!`;
-    isGameActive = false;
+    GameActive = false;
     return;
   }
 
   let roundDraw = !gameState.includes('');
   if (roundDraw) {
     message.innerText = 'Draw!';
-    isGameActive = false;
+    GameActive = false;
     return;
   }
 
